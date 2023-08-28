@@ -1,0 +1,20 @@
+.productEntry {
+  &__contentImg {
+    border-radius: 0px 0px 20px 20px;
+    background: var(--gray-light-primary);
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  &__price {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  &__description {
+    text-align: justify;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}

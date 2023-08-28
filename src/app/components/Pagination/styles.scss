@@ -1,0 +1,32 @@
+.pagination {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  &__prev,
+  &__next {
+    border: 0px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  &__prev {
+    img {
+      transform: rotate(180deg);
+    }
+  }
+  &__btn {
+    cursor: pointer;
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    border: 0px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+    background-color: rgba(45, 64, 80, 0.15);
+    &.active {
+      background-color: var(--blue-light-primary);
+      color: var(--white-primary);
+    }
+  }
+}

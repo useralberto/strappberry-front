@@ -1,14 +1,14 @@
 import { useState } from "react";
+import { Pagination } from "../Pagination";
+import { SelectLimit } from "../SelectLimit";
 
 //Assets
 import DeleteIcon from "../../assets/delete.svg";
 import EditIcon from "../../assets/edit.svg";
 import Sort from "../../assets/sort.svg";
-import Arrow from "../../assets/arrow.svg";
 
 //Styles
 import "./styles.scss";
-
 export const TableProducts = ({ data }) => {
   const pageSizeOptions = [20, 25, 50, 100];
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,6 +45,7 @@ export const TableProducts = ({ data }) => {
   const currentPageData = sortedData.slice(startIndex, endIndex);
 
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
+
   const HeadsTable = [
     { label: "Image", col: "2", onclick: "" },
     { label: "Nombre", col: "2", onclick: "name" },
@@ -117,89 +118,22 @@ export const TableProducts = ({ data }) => {
 
         <section className="TableProducts__footer mt-4 mb-3 row gy-3">
           <div className="col-8 col-md-5 col-lg-3">
-            <form className="row blockLimit">
-              <div className="col-6 col-lg-5">
-                <select
-                  onChange={handleItemsPerPageChange}
-                  value={itemsPerPage}
-                  className="form-select"
-                  id="autoSizingSelect"
-                >
-                  {pageSizeOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <label className="col-6 col-lg-7 col-form-label">
-                Registros Visibles
-              </label>
-            </form>
+            <SelectLimit
+              data={{
+                handleItemsPerPageChange,
+                itemsPerPage,
+                pageSizeOptions,
+              }}
+            />
           </div>
           <div className="col-12 col-lg-9 TableProducts__footer--pagination">
-            <ul className="pagination m-0 p-0">
-              <li className="m-2">
-                {currentPage === 1 ? (
-                  <button className="pagination__prev">
-                    <img
-                      src={Arrow}
-                      alt="Arrow"
-                      width={12}
-                      className="img-fluid"
-                    />
-                  </button>
-                ) : (
-                  <button
-                    className="pagination__prev"
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                  >
-                    <img
-                      src={Arrow}
-                      alt="Arrow"
-                      className="img-fluid"
-                      width={12}
-                    />
-                  </button>
-                )}
-              </li>
-              {[...Array(totalPages).keys()].map((page, index) => (
-                <li key={index} className="pagination__item m-2">
-                  <button
-                    className={`pagination__btn ${
-                      currentPage === page + 1 ? "active" : ""
-                    }`}
-                    onClick={() => setCurrentPage(page + 1)}
-                  >
-                    {page + 1}
-                  </button>
-                </li>
-              ))}
-              <li className="pagination__item m-2">
-                {currentPage === totalPages ? (
-                  <button className="pagination__next">
-                    <img
-                      src={Arrow}
-                      alt="Arrow"
-                      className="img-fluid"
-                      width={12}
-                    />
-                  </button>
-                ) : (
-                  <button
-                    className="pagination__next"
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                  >
-                    <img
-                      src={Arrow}
-                      alt="Arrow"
-                      className="img-fluid"
-                      width={12}
-                    />
-                  </button>
-                )}
-              </li>
-            </ul>
+            <Pagination
+              data={{
+                currentPage,
+                totalPages,
+                setCurrentPage,
+              }}
+            />
           </div>
         </section>
       </div>

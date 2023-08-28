@@ -8,7 +8,7 @@ export const CustomersViewsRouter = [
     exact: true,
   },
   {
-    path: "/producto",
+    path: "/producto/:id",
     view: <Product />,
     exact: true,
   },
