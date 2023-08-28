@@ -1,0 +1,19 @@
+$white-primary: #ffffff;
+$black-primary: #000000;
+$blue-strong-primary: #353c59;
+$blue-light-primary: #013976;
+$gray-primary: #f0f1f5;
+$gray-strong-primary: #686b75;
+$red-primary: #d15253;
+$gray-light-primary: #e0e3f0;
+
+:root {
+  --white-primary: #{$white-primary};
+  --black-primary: #{$black-primary};
+  --blue-strong-primary: #{$blue-strong-primary};
+  --blue-light-primary: #{$blue-light-primary};
+  --gray-primary: #{$gray-primary};
+  --gray-strong-primary: #{$gray-strong-primary};
+  --red-primary: #{$red-primary};
+  --gray-light-primary: #{$gray-light-primary};
+}

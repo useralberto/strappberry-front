@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+  &:focus {
+    box-shadow: 0 0 0 0 !important;
+    outline: -webkit-focus-ring-color auto 0px;
+  }
+}
+a,
+a:hover {
+  text-decoration: none !important;
+}
+
+#app-strappberry,
+html,
+body {
+  height: 100%;
+}
+
+body,
+.body {
+  margin: 0px;
+  padding: 0px;
+}
+
+#app-strappberry {
+  scroll-behavior: smooth;
+  scroll-padding-top: 65px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  background-color: var(--white-primary);
+  color: var(--black-primary);
+  font-family: "Nunito", sans-serif;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.blockLimit {
+  align-items: center;
+  select {
+    border-radius: 8px;
+  }
+  label {
+    font-size: 14px;
+  }
+}
+.pagination {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  &__prev,
+  &__next {
+    border: 0px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  &__prev {
+    img {
+      transform: rotate(180deg);
+    }
+  }
+  &__btn {
+    cursor: pointer;
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    border: 0px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+    background-color: rgba(45, 64, 80, 0.15);
+    &.active {
+      background-color: var(--blue-light-primary);
+      color: var(--white-primary);
+    }
+  }
+}
+
+.form-control {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 10px;
+  &,
+  &:focus {
+    background-color: var(--gray-light-primary);
+  }
+}
+.form-select {
+  border-radius: 10px;
+}
+.form-select,
+.form-control,
+.form-floating {
+  font-family: "Nunito", sans-serif;
+  color: var(--gray-strong-primary);
+}
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after {
+  background-color: var(--gray-light-primary);
+}
+input.form-control,
+select.form-select {
+  min-height: 50px !important;
+  height: 51px !important;
+}
+.form-floating {
+  label {
+    padding: 0.8rem 0.75rem;
+  }
+  & > .form-control:focus ~ label::after {
+    background-color: var(--gray-light-primary);
+  }
+}

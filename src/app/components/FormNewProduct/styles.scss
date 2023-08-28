@@ -1,0 +1,49 @@
+.FormNewProduct {
+  &__form {
+    .form-select {
+      background-color: var(--gray-light-primary);
+    }
+    .form-select {
+      --bs-form-select-bg-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='17' viewBox='0 0 20 17' fill='none'%3E%3Cpath d='M19.4661 0.397089L10.1192 16.9994L0.414688 0.60355L19.4661 0.397089Z' fill='%23635353'/%3E%3C/svg%3E");
+    }
+    .image-upload-container {
+      .image-upload-box {
+        border: 1px dashed #686b75;
+        background-color: #e0e3f0;
+        cursor: pointer;
+        min-width: 343px;
+        min-height: 189px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.3s ease-in-out;
+
+        &:hover {
+          border-color: #86b7fe;
+        }
+
+        .uploaded-image {
+          width: 140px;
+          height: 140px;
+          object-fit: contain;
+        }
+
+        .upload-icon {
+          font-size: 24px;
+          margin-bottom: 8px;
+        }
+
+        .upload-text {
+          color: var(--gray-strong-primary);
+          font-size: 18px;
+        }
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+    }
+  }
+}

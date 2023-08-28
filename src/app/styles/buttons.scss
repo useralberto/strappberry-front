@@ -1,0 +1,42 @@
+.btn-blue-strong {
+  display: inline-block;
+  border: 0px;
+  cursor: pointer;
+  color: var(--white-primary);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+  position: relative;
+  background-color: transparent;
+  z-index: 1;
+  overflow: hidden;
+  &::after,
+  &::before {
+    transition: width 0.4s ease;
+    content: "";
+    position: absolute;
+    top: 0%;
+    height: 100%;
+  }
+  &::before {
+    left: 0%;
+    z-index: -2;
+    width: 0%;
+    background-color: var(--red-primary);
+  }
+  &::after {
+    right: 0%;
+    width: 100%;
+    z-index: -1;
+    background-color: var(--blue-strong-primary);
+  }
+  &:hover {
+    background-color: transparent;
+    &::before {
+      width: 100%;
+    }
+    &::after {
+      width: 0%;
+    }
+  }
+}

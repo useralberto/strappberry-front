@@ -1,0 +1,25 @@
+.LoginAndRegistration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--blue-strong-primary);
+  &__card {
+    min-height: 454px;
+    background: var(--white-primary, #fff);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    &--footer {
+      color: var(--gray-strong-primary);
+      font-size: 15px;
+      a,
+      a:hover {
+        color: var(--blue-strong-primary);
+      }
+    }
+  }
+}

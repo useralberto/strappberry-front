@@ -1,0 +1,57 @@
+.TableProducts {
+  &__head {
+    list-style: none;
+    color: var(--white-primary);
+    background-color: var(--blue-strong-primary);
+    overflow: hidden;
+    border-radius: 10px;
+    &--item {
+      min-height: 34px;
+      padding: 0.6rem;
+      text-align: center;
+      font-weight: 600;
+    }
+    &--contentSort,
+    &--btn-sort {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &--btn-sort {
+      flex-direction: column;
+      cursor: pointer;
+      background-color: transparent;
+      border: 0px;
+      img:first-child {
+        transform: rotate(60deg);
+      }
+    }
+  }
+  &__body {
+    min-height: 80px;
+    overflow: hidden;
+    border-radius: 10px;
+    &:nth-child(2n + 1) {
+      background-color: var(--gray-light-primary);
+    }
+    &--item {
+      padding: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btn-blue-strong {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  &__footer {
+    align-items: center;
+    &--pagination {
+      .pagination {
+        justify-content: flex-end;
+      }
+    }
+  }
+}
