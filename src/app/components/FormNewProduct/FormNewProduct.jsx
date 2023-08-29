@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./styles.scss";
 import "react-toastify/dist/ReactToastify.css";
+import { getToken } from "../../services/Token";
 
 export const FormNewProduct = ({ data }) => {
   const navigate = useNavigate();
@@ -42,15 +43,20 @@ export const FormNewProduct = ({ data }) => {
 
   const handleSubmit = async (values) => {
     //const image = await convertToBase64(values.image);
+    const token = getToken();
     if (typeAction === "update") {
-      const response = await UpdateProduct(dataForm.id, {
-        name: values.name,
-        price: values.price,
-        description: values.description,
-        image: values.image,
-        category_id: values.category_id,
-        quantity: values.quantity,
-      });
+      const response = await UpdateProduct(
+        dataForm.id,
+        {
+          name: values.name,
+          price: values.price,
+          description: values.description,
+          image: values.image,
+          category_id: values.category_id,
+          quantity: values.quantity,
+        },
+        token
+      );
       if (response.error) return toast.error(response.error);
       toast.success(response.data.message);
       setTimeout(() => {
@@ -59,7 +65,7 @@ export const FormNewProduct = ({ data }) => {
 
       return;
     }
-    const response = await NewProduct(values);
+    const response = await NewProduct(values, token);
     if (response.error) return toast.error(response.error);
     toast.success(response.data.message);
     setTimeout(() => {

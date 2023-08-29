@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 
 //Styles
 import "./styles.scss";
+import { getToken } from "../../services/Token";
 export const TableProducts = () => {
   const [sortField, setSortField] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
@@ -73,7 +74,8 @@ export const TableProducts = () => {
   });
 
   const DeleteItem = async function (id, data) {
-    const response = await DeleteProduct(id, data);
+    const token = getToken();
+    const response = await DeleteProduct(id, data, token);
     getproducts();
   };
 

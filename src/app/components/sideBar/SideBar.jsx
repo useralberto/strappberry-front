@@ -1,17 +1,22 @@
 import "./styles.scss";
 //import Logo from "../../assets/logo.svg";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../../hooks";
 export const SideBar = ({ data }) => {
   const { Links, setShowSiderBar, showSideBar } = data;
+  const { auth, logout } = useAuth();
   return (
     <div className="SideBar p-4">
       <div className="row d-flex d-md-none">
-        <section className="col-8">
-          <p className="d-block d-md-none SideBar__user ">
-            Hola <br />
-            Karla
-          </p>
-        </section>
+        {auth ? (
+          <section className="col-8">
+            <p className="d-block d-md-none SideBar__user ">
+              Hola <br />
+            </p>
+          </section>
+        ) : (
+          ""
+        )}
         <section className="col-4 ">
           <button
             className={`d-block d-md-none ms-auto hamburger hamburger--collapse ${
@@ -40,6 +45,16 @@ export const SideBar = ({ data }) => {
           </li>
         ))}
       </ul>
+
+      {auth ? (
+        <div className="mt-auto mb-4 px-2">
+          <button className="SideBar__logout" onClick={() => logout()}>
+            Cerrar Sesión
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { getDataAccount, logoutService } from "../services/Auth";
 import { setItems, getItems } from "../services/Cart";
 import { getToken, removeToken, setToken } from "../services/Token";
 
@@ -22,8 +23,8 @@ export const AuthProvider = function (props) {
 
       const token = getToken();
       if (token) {
-        //const data = await getMe(token);
-        //setAuth({ token, account: data });
+        const data = await getDataAccount(token);
+        setAuth({ token, ...data.data });
       }
       if (!token) setAuth(null);
     })();
@@ -37,6 +38,8 @@ export const AuthProvider = function (props) {
 
   const logout = () => {
     if (!auth) return;
+    const token = getToken();
+    logoutService(token);
     removeToken();
     setAuth(null);
   };
@@ -64,7 +67,7 @@ export const AuthProvider = function (props) {
     addCartItem,
   };
 
-  //if (auth === undefined) return null;
+  if (auth === undefined) return null;
 
   return (
     <AuthContext.Provider value={valueContext}>{children}</AuthContext.Provider>

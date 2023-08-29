@@ -8,22 +8,26 @@ import CartLogo from "../../assets/cart.svg";
 import Logo from "../../assets/logo.svg";
 import { useAuth } from "../../hooks";
 export const Navbar = function ({ data }) {
-  const { cartItems } = useAuth();
+  const { cartItems, auth } = useAuth();
   const { setShowSiderBar, showSideBar, inDashboard } = data;
   return (
     <nav className="Navbar">
       <div className="container-fluid ps-0">
         <section className="row">
-          <div className="col-4 col-md-3 col-lg-2 Navbar__logo py-3 px-4">
+          <div className="col-4 col-md-3 col-lg-2 Navbar__logo pt-4 pb-3 px-4">
             <Link to="/">
               <img src={Logo} alt="StrappBerry" className="img-fluid " />
             </Link>
           </div>
           <div className="col-8 col-md-9 col-lg-10">
             <ul className="Navbar__menu h-100 ps-0 pe-md-3 m-0">
-              <li className="Navbar__menu--item p-2 d-none d-md-block">
-                Hola Karla
-              </li>
+              {auth ? (
+                <li className="Navbar__menu--item p-2 d-none d-md-block">
+                  Hola {auth.name}
+                </li>
+              ) : (
+                ""
+              )}
               {inDashboard ? null : (
                 <>
                   <li className="Navbar__menu--item cart p-2">

@@ -1,7 +1,16 @@
 .SideBar {
   background-color: var(--blue-strong-primary);
-  min-height: 650px;
+  min-height: 600px;
   border-radius: 0px 0px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  &__logout {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white-primary);
+    background-color: transparent;
+    border: 0px;
+  }
   &__menu {
     list-style: none;
     &--link {

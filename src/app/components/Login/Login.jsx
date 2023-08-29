@@ -24,9 +24,10 @@ export const Login = () => {
   });
 
   const handleSubmit = async (values) => {
-    const { error, data, token } = await LoginService(values);
+    const { error, data } = await LoginService(values);
     if (error) return toast.error(error);
-    await login({ ...data, token });
+    const { data: dataUser, token } = data;
+    await login({ ...dataUser, token });
   };
 
   return (
@@ -80,6 +81,18 @@ export const Login = () => {
           </div>
         </Form>
       </Formik>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
+
       <div className="mt-auto text-center LoginAndRegistration__card--footer pt-4">
         <p className="mb-4 pb-1">
           ¿Aún no tienes cuenta?

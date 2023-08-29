@@ -2,6 +2,7 @@ import { AuthProvider } from "./contexts";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AdminViewsRouter, CustomersViewsRouter } from "./routers";
+import { NotFound } from "./views/Base";
 
 const TypesRouter = {
   admin: {
@@ -35,7 +36,10 @@ const App = function () {
   return (
     <AuthProvider>
       <Router>
-        <Routes>{KeyRouters.map((i) => SetRouter(i))}</Routes>
+        <Routes>
+          {KeyRouters.map((i) => SetRouter(i))}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </Router>
     </AuthProvider>
   );

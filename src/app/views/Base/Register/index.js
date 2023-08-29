@@ -1,14 +1,23 @@
 import { Link } from "react-router-dom";
 import { LoginAndRegistration } from "../../../partials";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
+import "react-toastify/dist/ReactToastify.css";
+import { RegistrationService } from "../../../services/Register";
+
 export const Registration = () => {
+  const navigate = useNavigate();
+
   const initialValues = {
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
+    typeUser: "customer",
   };
 
   const validationSchema = Yup.object({
@@ -22,9 +31,13 @@ export const Registration = () => {
       .required("Este campo es requerido"),
   });
 
-  const handleSubmit = (values) => {
-    console.log("Valores enviados:", values);
-    // Realiza aquí la lógica de registro
+  const handleSubmit = async (values) => {
+    const { error, data } = await RegistrationService(values);
+    if (error) return toast.error(error);
+    toast.success(data.message);
+    setTimeout(() => {
+      navigate("/", { replace: true });
+    }, 2000);
   };
 
   return (
@@ -108,6 +121,18 @@ export const Registration = () => {
           </div>
         </Form>
       </Formik>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
+
       <div className="mt-auto text-center LoginAndRegistration__card--footer pt-4">
         <p className="mb-4 pb-1">
           ¿Ya tienes cuenta?

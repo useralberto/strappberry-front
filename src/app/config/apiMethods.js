@@ -9,7 +9,7 @@ const request = async function (url, options) {
     if (response.status !== 200) {
       return {
         error:
-          data?.detail ||
+          data?.message ||
           "Se ha producido un error inténtelo de nuevo más tarde",
         data: [],
       };

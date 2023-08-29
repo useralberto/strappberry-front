@@ -1,0 +1,10 @@
+.NotFound {
+  background-color: var(--blue-strong-primary);
+  font-size: 18px;
+  color: var(--white-primary);
+  border-radius: 10px;
+  &__title {
+    font-size: 33px;
+    font-weight: 700;
+  }
+}
