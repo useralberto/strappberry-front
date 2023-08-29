@@ -1,4 +1,4 @@
-import { Products, NewProduct } from "../views/Admin";
+import { Products, NewProduct, EditProduct } from "../views/Admin";
 
 export const AdminViewsRouter = [
   {
@@ -9,6 +9,11 @@ export const AdminViewsRouter = [
   {
     path: "/nuevo-producto",
     view: <NewProduct />,
+    exact: true,
+  },
+  {
+    path: "/producto/:id",
+    view: <EditProduct />,
     exact: true,
   },
 ];

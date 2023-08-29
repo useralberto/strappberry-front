@@ -1,4 +1,8 @@
 .FormNewProduct {
+  .error-message {
+    margin-bottom: 1.2rem;
+    color: var(--red-primary);
+  }
   &__form {
     .form-select {
       background-color: var(--gray-light-primary);

@@ -47,16 +47,28 @@ const post = async function (url, body, headers = {}) {
     console.warn("Exception in post => " + Exception);
   }
 };
+const put = async function (url, body, headers = {}) {
+  try {
+    return await request(url, {
+      method: "PUT",
+      headers: { ...deafultHeaders, ...headers },
+      body: JSON.stringify(body),
+    });
+  } catch (Exception) {
+    console.warn("Exception in post => " + Exception);
+  }
+};
 
-const del = async function (url, headers = {}) {
+const del = async function (url, body, headers = {}) {
   try {
     return await request(url, {
       method: "DELETE",
       headers: { ...deafultHeaders, ...headers },
+      body: JSON.stringify(body),
     });
   } catch (Exception) {
     console.warn("Exception in del => " + Exception);
   }
 };
 
-export { get, post, del };
+export { get, post, del, put };

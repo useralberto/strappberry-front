@@ -5,11 +5,11 @@ import { SelectLimit } from "../SelectLimit";
 import DeleteIcon from "../../assets/delete.svg";
 import EditIcon from "../../assets/edit.svg";
 import Sort from "../../assets/sort.svg";
-import { Getproducts } from "../../services/Products";
+import { Getproducts, DeleteProduct } from "../../services/Products";
+import { Link } from "react-router-dom";
 
 //Styles
 import "./styles.scss";
-
 export const TableProducts = () => {
   const [sortField, setSortField] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
@@ -17,7 +17,6 @@ export const TableProducts = () => {
   const [data, setData] = useState([]);
   const pageSizeOptions = [20, 25, 50, 100];
 
-  const [productCategories, setProductCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(pageSizeOptions[0]);
   const [totalPages, setTotalPages] = useState(1);
@@ -73,6 +72,11 @@ export const TableProducts = () => {
     return 0;
   });
 
+  const DeleteItem = async function (id, data) {
+    const response = await DeleteProduct(id, data);
+    getproducts();
+  };
+
   const HeadsTable = [
     { label: "Image", col: "2", onclick: "" },
     { label: "Nombre", col: "2", onclick: "name" },
@@ -119,7 +123,10 @@ export const TableProducts = () => {
               {item.price}
             </div>
             <div className="col-12 col-lg-6 TableProducts__body--item">
-              <button className="me-3 btn-blue-strong">
+              <Link
+                to={`/panel/producto/${item.id}`}
+                className="me-3 btn-blue-strong"
+              >
                 <img
                   src={EditIcon}
                   width={19}
@@ -128,8 +135,11 @@ export const TableProducts = () => {
                   className="img-flud me-2"
                 />
                 Editar
-              </button>
-              <button className="btn-blue-strong">
+              </Link>
+              <button
+                onClick={() => DeleteItem(item.id, item)}
+                className="btn-blue-strong"
+              >
                 <img
                   src={DeleteIcon}
                   width={19}

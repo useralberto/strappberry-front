@@ -4,7 +4,20 @@ export const NewProduct = function () {
   return (
     <DashboardLayout>
       <Masthead title="Agregar Producto" />
-      <FormNewProduct />
+      <FormNewProduct
+        data={{
+          typeAction: "new",
+          dataForm: {
+            name: "",
+            price: "",
+            description: "",
+            quantity: "",
+            image: "",
+            category_id: "",
+            quantity: 1,
+          },
+        }}
+      />
     </DashboardLayout>
   );
 };

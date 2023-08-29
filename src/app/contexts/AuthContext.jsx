@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { setItems, getItems } from "../services/Cart";
+import { getToken, removeToken, setToken } from "../services/Token";
 
 export const AuthContext = createContext({
   auth: undefined,
@@ -18,27 +19,26 @@ export const AuthProvider = function (props) {
       const ItemsCart = getItems();
       if (ItemsCart.length === 0) return;
       setCartItems([...ItemsCart]);
-      //const token = getToken();
-      //if (token) {
-      //const data = await getMe(token);
-      //setAuth({ token, account: data });
-      //}
-      //if (!token) setAuth(null);
+
+      const token = getToken();
+      if (token) {
+        //const data = await getMe(token);
+        //setAuth({ token, account: data });
+      }
+      if (!token) setAuth(null);
     })();
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const login = async (token) => {
-    //setToken(token);
-    //const data = await getMe(token);
-    //setAuth({ token, account: data });
+  const login = async (data) => {
+    setToken(data.token);
+    setAuth({ ...data });
   };
 
   const logout = () => {
-    //if (auth) {
-    //removeToken();
-    //setAuth(null);
-    //}
+    if (!auth) return;
+    removeToken();
+    setAuth(null);
   };
 
   const addCartItem = (item) => {

@@ -5,6 +5,12 @@
   justify-content: center;
   width: 100%;
   background-color: var(--blue-strong-primary);
+  .error-message {
+    margin-bottom: 1rem;
+    font-size: 13px;
+    color: var(--red-primary);
+  }
+
   &__card {
     min-height: 454px;
     background: var(--white-primary, #fff);

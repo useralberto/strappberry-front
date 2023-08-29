@@ -21,7 +21,7 @@ const DashboardLayout = function ({ children }) {
     },
   ];
 
-  //if (!auth) return <Login />;
+  if (!auth) return <Login />;
 
   return (
     <section className="body">
