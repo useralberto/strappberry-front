@@ -1,20 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pagination } from "../Pagination";
 import { SelectLimit } from "../SelectLimit";
-
 //Assets
 import DeleteIcon from "../../assets/delete.svg";
 import EditIcon from "../../assets/edit.svg";
 import Sort from "../../assets/sort.svg";
+import { Getproducts } from "../../services/Products";
 
 //Styles
 import "./styles.scss";
-export const TableProducts = ({ data }) => {
-  const pageSizeOptions = [20, 25, 50, 100];
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(pageSizeOptions[0]);
+
+export const TableProducts = () => {
   const [sortField, setSortField] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
+
+  const [data, setData] = useState([]);
+  const pageSizeOptions = [20, 25, 50, 100];
+
+  const [productCategories, setProductCategories] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(pageSizeOptions[0]);
+  const [totalPages, setTotalPages] = useState(1);
+  const getproducts = async function (
+    category = "",
+    limit = itemsPerPage,
+    page = currentPage
+  ) {
+    const data = await Getproducts(category, limit, page);
+    const { data: Products, last_page } = data.data;
+    if (Products.length === 0) return;
+    if (last_page) {
+      setTotalPages(last_page);
+    }
+    setData([...Products]);
+    return;
+  };
+
+  useEffect(() => {
+    (async () => {
+      getproducts();
+    })();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const ChagePage = (value) => {
+    setCurrentPage(value);
+    getproducts("", itemsPerPage, value);
+  };
 
   const handleSort = (field) => {
     if (sortField === field) {
@@ -28,6 +60,7 @@ export const TableProducts = ({ data }) => {
   const handleItemsPerPageChange = (e) => {
     setItemsPerPage(parseInt(e.target.value));
     setCurrentPage(1);
+    getproducts("", parseInt(e.target.value), 1);
   };
 
   const sortedData = [...data].sort((a, b) => {
@@ -39,12 +72,6 @@ export const TableProducts = ({ data }) => {
     }
     return 0;
   });
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentPageData = sortedData.slice(startIndex, endIndex);
-
-  const totalPages = Math.ceil(sortedData.length / itemsPerPage);
 
   const HeadsTable = [
     { label: "Image", col: "2", onclick: "" },
@@ -77,7 +104,7 @@ export const TableProducts = ({ data }) => {
             </li>
           ))}
         </ul>
-        {currentPageData.map((item) => (
+        {sortedData.map((item) => (
           <section
             className="row gx-0 py-3 py-lg-0 TableProducts__body"
             key={item.id}
@@ -131,7 +158,7 @@ export const TableProducts = ({ data }) => {
               data={{
                 currentPage,
                 totalPages,
-                setCurrentPage,
+                ChagePage,
               }}
             />
           </div>

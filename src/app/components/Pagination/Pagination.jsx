@@ -2,7 +2,7 @@ import Arrow from "../../assets/arrow.svg";
 
 import "./styles.scss";
 export const Pagination = ({ data }) => {
-  const { currentPage, totalPages, setCurrentPage } = data;
+  const { currentPage, totalPages, ChagePage } = data;
   return (
     <ul className="pagination m-0 p-0">
       <li className="m-2">
@@ -13,7 +13,7 @@ export const Pagination = ({ data }) => {
         ) : (
           <button
             className="pagination__prev"
-            onClick={() => setCurrentPage(currentPage - 1)}
+            onClick={() => ChagePage(currentPage - 1)}
           >
             <img src={Arrow} alt="Arrow" className="img-fluid" width={12} />
           </button>
@@ -25,7 +25,7 @@ export const Pagination = ({ data }) => {
             className={`pagination__btn ${
               currentPage === page + 1 ? "active" : ""
             }`}
-            onClick={() => setCurrentPage(page + 1)}
+            onClick={() => ChagePage(page + 1)}
           >
             {page + 1}
           </button>
@@ -39,7 +39,7 @@ export const Pagination = ({ data }) => {
         ) : (
           <button
             className="pagination__next"
-            onClick={() => setCurrentPage(currentPage + 1)}
+            onClick={() => ChagePage(currentPage + 1)}
           >
             <img src={Arrow} alt="Arrow" className="img-fluid" width={12} />
           </button>

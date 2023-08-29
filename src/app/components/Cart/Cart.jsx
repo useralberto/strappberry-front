@@ -24,7 +24,7 @@ export const Cart = function () {
     if (Qty === 0) {
       updatedCartItems.splice(index, 1);
     } else {
-      updatedCartItems[index].qty = Qty;
+      updatedCartItems[index].quantity = Qty;
     }
     setItems(updatedCartItems);
     return setCartItems(updatedCartItems);
@@ -33,7 +33,7 @@ export const Cart = function () {
   const handleIncrement = (index) => {
     const updatedCartItems = [...getItems()];
     if (updatedCartItems[index].qty >= 100) return;
-    updatedCartItems[index].qty += 1;
+    updatedCartItems[index].quantity += 1;
     setItems(updatedCartItems);
     setCartItems(updatedCartItems);
   };
@@ -41,10 +41,10 @@ export const Cart = function () {
   const handleDecrement = (index) => {
     const updatedCartItems = [...getItems()];
 
-    if (updatedCartItems[index].qty <= 1) {
+    if (updatedCartItems[index].quantity <= 1) {
       updatedCartItems.splice(index, 1);
     } else {
-      updatedCartItems[index].qty -= 1;
+      updatedCartItems[index].quantity -= 1;
     }
 
     setItems(updatedCartItems);
@@ -56,7 +56,7 @@ export const Cart = function () {
   };
 
   const total = cartItems.reduce((accumulator, item) => {
-    return accumulator + item.price * item.qty;
+    return accumulator + item.price * item.quantity;
   }, 0);
 
   return (
@@ -100,7 +100,7 @@ export const Cart = function () {
                         <input
                           type="text"
                           min={1}
-                          value={product.qty}
+                          value={product.quantity}
                           onChange={(e) =>
                             handleQuantityChange(index, e.target.value)
                           }

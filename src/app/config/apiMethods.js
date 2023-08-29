@@ -11,7 +11,7 @@ const request = async function (url, options) {
         error:
           data?.detail ||
           "Se ha producido un error inténtelo de nuevo más tarde",
-        data: {},
+        data: [],
       };
     }
 

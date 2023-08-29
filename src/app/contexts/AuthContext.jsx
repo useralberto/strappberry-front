@@ -47,7 +47,7 @@ export const AuthProvider = function (props) {
       (cartItem) => cartItem.name === item.name
     );
     if (existingItemIndex !== -1) {
-      cartItems[existingItemIndex].qty += item.qty;
+      cartItems[existingItemIndex].quantity += item.quantity;
     } else {
       cartItems.push(item);
     }
